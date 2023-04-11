@@ -23,8 +23,8 @@ namespace JsonTransformerApi.Controllers
         /// </summary>
         /// <param name="password">The password to use.</param>
         /// <returns>The token, if successful; otherwise, a bad request (400) status code.</returns>
-        [HttpGet()]
-        public IActionResult GetToken(string password)
+        [HttpPost()]
+        public IActionResult GetToken([FromBody] string password)
         {
             try
             {
