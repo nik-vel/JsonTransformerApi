@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  jsontransformerapi:
+    image: ${DOCKER_REGISTRY-}jsontransformerapi
+    build:
+      context: .
+      dockerfile: JsonTransformerApi/Dockerfile
+    ports:
+      - "8001:443"
+    depends_on:
+      - mongodb
+    networks:
+      - my-network
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - my-network
+volumes:
+  mongodb_data:
+networks:
+  my-network:
